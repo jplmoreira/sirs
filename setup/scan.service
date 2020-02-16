@@ -1,0 +1,27 @@
+[Unit]
+Description=Scan Server
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=simple
+
+Environment=SSL_HOST='a30-sirs.com'
+Environment=SSL_PORT=8082
+Environment=SSL_CLIENT_CERT='/vagrant/ssl/scan-1.crt'
+Environment=SSL_CLIENT_KEY='/vagrant/ssl/scan-1.key'
+Environment=SSL_CA_CERT='/vagrant/ssl/root_ca.crt'
+Environment=SCAN_HOST='192.168.40.2'
+Environment=SCAN_PORT=9999
+Environment=SCAN_LOCATION='gps for network sirs-scan-1-'
+Environment=SCAN_BROADCAST='192.168.40.255'
+Environment=PYTHONPATH="$PYTHONPATH:/vagrant"
+
+ExecStart=/usr/bin/python3 /vagrant/scan.py
+PrivateTmp=true
+LimitNOFILE=infinity
+KillMode=mixed
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
