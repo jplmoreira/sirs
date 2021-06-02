@@ -19,6 +19,6 @@ shellescape==3.4.1
 simplejson==3.17.0
 six==1.13.0
 tinyec==0.3.1
-urllib3==1.25.7
+urllib3==1.26.5
 WTForms==2.2.1
 Werkzeug==0.16.0
